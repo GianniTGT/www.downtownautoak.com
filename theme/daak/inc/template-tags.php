@@ -9,8 +9,17 @@
 
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-/** The badge. An uploaded logo wins; otherwise the theme's own drawn mark. */
-function daak_logo( $class = 'brand-badge' ) {
+/**
+ * The badge.
+ *
+ * An uploaded logo always wins — the dealer's mark belongs in the media library,
+ * not in the theme, which is what lets this theme run for the next dealership.
+ * The drawn badge in assets/img is only what stands there until one is uploaded.
+ *
+ * @param string $class   CSS class.
+ * @param string $variant 'reverse' for navy grounds — the footer, a photograph.
+ */
+function daak_logo( $class = 'brand-badge', $variant = 'default' ) {
 	$id = (int) daak_profile( 'logo_id' );
 	if ( $id && wp_get_attachment_image( $id, 'medium' ) ) {
 		echo wp_get_attachment_image( $id, 'medium', false, array( 'class' => $class, 'alt' => esc_attr( daak_profile( 'name' ) ) ) );
@@ -21,10 +30,15 @@ function daak_logo( $class = 'brand-badge' ) {
 		echo wp_get_attachment_image( $logo_id, 'medium', false, array( 'class' => $class, 'alt' => esc_attr( daak_profile( 'name' ) ) ) );
 		return;
 	}
+	// The brand's own rule: the full badge holds four things — frame, name, wings,
+	// letters — and below about 40px they collide. In the header and the footer the
+	// wordmark stands beside the mark anyway, so the small-size artwork (AK alone)
+	// is the right one there. The full badge is what og:image and print use.
+	$file = 'reverse' === $variant ? 'daak-badge-reverse.svg' : 'daak-monogram.svg';
 	printf(
 		'<img class="%s" src="%s" width="52" height="52" alt="%s">',
 		esc_attr( $class ),
-		esc_url( DAAK_URI . '/assets/img/daak-badge.svg' ),
+		esc_url( DAAK_URI . '/assets/img/' . $file ),
 		esc_attr( daak_profile( 'name', 'Home' ) )
 	);
 }

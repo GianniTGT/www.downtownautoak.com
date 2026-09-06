@@ -108,7 +108,6 @@ tools/tests/no-dealer-literals.sh       # the theme must know no dealer
 php tools/preview/render.php            # render every template to static HTML
 node tools/preview/audit.js 390         # no sideways scroll, no JS errors, tap targets
 tools/preview/shoot.sh 390 phone        # screenshots
-node brand/build-brand.js               # rebuild the marks and the favicon
 ```
 
 `tools/preview/` renders the templates outside WordPress against fixture data.

@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 468 96" width="468" height="96" role="img" aria-label="Downtown Auto AK">
-  <g transform="translate(0 4) scale(0.1719)">  <rect width="512" height="512" rx="76" fill="#08318B"/>
-  <rect x="36" y="215" width="68" height="13" rx="6.5" fill="#FFFFFF"/><rect x="424" y="215" width="68" height="13" rx="6.5" fill="#FFFFFF"/><rect x="20" y="249" width="84" height="13" rx="6.5" fill="#FFFFFF"/><rect x="408" y="249" width="84" height="13" rx="6.5" fill="#FFFFFF"/><rect x="36" y="283" width="68" height="13" rx="6.5" fill="#FFFFFF"/><rect x="424" y="283" width="68" height="13" rx="6.5" fill="#FFFFFF"/>
-  <circle cx="256" cy="256" r="150" fill="none" stroke="#FFFFFF" stroke-width="14"/>
-  <path d="M10 6 V74 M10 6 H30 C58 6 58 74 30 74 H10" transform="translate(177.10 231.20) scale(0.62)" fill="none" stroke="#FFFFFF" stroke-width="11" stroke-linecap="butt" stroke-linejoin="miter"/><path d="M4 74 L30 6 L56 74 M14 52 H46" transform="translate(217.30 231.20) scale(0.62)" fill="none" stroke="#FFFFFF" stroke-width="11" stroke-linecap="butt" stroke-linejoin="miter"/><path d="M4 74 L30 6 L56 74 M14 52 H46" transform="translate(257.50 231.20) scale(0.62)" fill="none" stroke="#FFFFFF" stroke-width="11" stroke-linecap="butt" stroke-linejoin="miter"/><path d="M10 6 V74 M52 6 L16 40 M24 32 L54 74" transform="translate(297.70 231.20) scale(0.62)" fill="none" stroke="#FFFFFF" stroke-width="11" stroke-linecap="butt" stroke-linejoin="miter"/>
-</g>
-  <text x="106" y="45" font-family="'Barlow Condensed','Arial Narrow',sans-serif" font-size="36" font-weight="800" letter-spacing="1" fill="#08318B">DOWNTOWN AUTO</text>
-  <text x="106" y="79" font-family="'Barlow','Segoe UI',sans-serif" font-size="24" font-weight="600" letter-spacing="7.5" fill="#5A6785">ALASKA</text>
-</svg>

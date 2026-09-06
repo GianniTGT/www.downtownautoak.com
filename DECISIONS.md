@@ -49,29 +49,52 @@ Deliberately **not** the vendor gold `#C9A053`: that is TIFF's colour, and
 borrowing it for the dealer's rental brand blurs the one line this identity
 rests on.
 
-## 3. DAAK does not survive 16px, so the favicon is the monogram
+## 3. The badge in the repository is the badge, and it is AK at small sizes
 
-Four letters where there were three is the whole risk in adapting the badge, and
-it fails first at the favicon size. It was rendered and looked at
-(`docs/screenshots/badge-16px-proof.png` and `favicon-candidates.png`) rather than argued about:
+The mark was drawn in an earlier session and lives in `brand/` with its own
+specification (`brand/README.md`): the dealership's winged navy badge with
+DOWNTOWN AUTO above and **AK** across the middle, letters converted to outlines
+so the artwork carries no font dependency.
+
+This build's own 16px test reached the same conclusion independently before that
+folder was merged in, which is worth recording because it is the decision the
+brief said would decide the job. Four letters were rendered and looked at
+(`docs/screenshots/badge-16px-proof.png`, `favicon-candidates.png`):
 
 | drawing | 48px | 32px | 16px |
 |---|---|---|---|
-| Full badge, DAAK in the ring | readable | mush | gone |
+| Four letters inside the ring | readable | mush | gone |
 | DAAK stacked two-by-two | crisp | readable | mush |
-| AK monogram | crisp | crisp | **readable** |
+| Two letters alone | crisp | crisp | **readable** |
 
-**So**, exactly as the brief's fallback says: the favicon is the monogram and the
-wordmark sits beside the badge in the header. The ICO carries the right drawing
-for each size rather than one drawing squeezed — 16 and 32 are the AK monogram,
-48 through 256 are the stacked DAAK.
+So the brief's fallback is what happens, and it is what `brand/` already does:
+the small-size artwork drops the name and the wings and gives the letters the
+room. `brand/favicon.ico` carries the right drawing per size — 16 and 32 from the
+icon, 48 and up from the badge.
 
-The full badge keeps the dealership's silhouette: navy plate, white wing bars,
-ringed circle, letters inside. It is what the header, print and the 512/1024 PNGs
-use. Letterforms are drawn as geometry, so no font has to be installed anywhere
-for the mark to render identically.
+**On DAAK versus AK.** The brief argued for DAAK so the badge and the address
+agree letter for letter. The badge as drawn does agree — it reads
+*DOWNTOWN AUTO / AK*, which is the whole of `downtownautoak.com`, and it does it
+without asking four narrow letters to survive a favicon. The short mark stays
+DAAK in writing; the drawn mark is the badge.
 
-Rebuild everything with `node brand/build-brand.js`.
+Where each artwork is used:
+
+| | |
+|---|---|
+| `daak-badge.svg` | og:image, print, anything 48px and above on white |
+| `daak-badge-reverse.svg` | the footer and any navy ground |
+| `daak-icon.svg` → theme `daak-monogram.svg` | header and footer, where the wordmark stands beside the mark |
+| `favicon.ico` | the browser tab, six sizes |
+
+The dealer's own logo still belongs in the media library, not in the theme: an
+uploaded logo wins over all of this. These files are source artwork and a
+fallback, not the dealer's record.
+
+One thing left open by `brand/README.md` and worth doing before anything is
+printed: the wings were interpreted from a ~60px account tile. Send the original
+DAS vector and they get redrawn against it, so the two badges are genuinely
+siblings rather than merely similar.
 
 ## 4. A block covers both its dates
 

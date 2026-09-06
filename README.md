@@ -11,7 +11,7 @@ build and check both. The original build brief is kept below, unchanged.
 | | |
 |---|---|
 | `theme/daak/` | The WordPress theme: fleet, per-vehicle availability, request-based booking that cannot double-book, the Alaska pages, the business profile record and the go-live checklist. No plugin dependencies. |
-| `brand/` | The DAAK marks, drawn as geometry — badge, stacked mark, AK monogram, header lockup — plus the generator and the rasteriser that produce the PNGs and a 6-size favicon. |
+| `brand/` | The badge: master, reverse, small-size icon, PNGs and a 6-size favicon, with its specification in `brand/README.md`. Source artwork — the dealer's own logo is uploaded into the site, never committed into the theme. |
 | `deploy/daak-seed.json` | The dealer's details, deliberately outside the theme. Imported on first run; never overwrites anything typed on the site. |
 | `docs/` | [Installing](docs/INSTALL.md) · [What only the owner can decide](docs/OWNER-QUESTIONS.md) · screenshots |
 | `tools/preview/` | Renders every template to static HTML outside WordPress, screenshots it, and audits it in a real browser. |

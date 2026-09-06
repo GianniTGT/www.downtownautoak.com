@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 		<div class="foot-grid">
 			<div>
 				<a class="brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-					<?php daak_logo( 'brand-badge on-dark' ); ?>
+					<?php daak_logo( 'brand-badge on-dark', 'reverse' ); ?>
 					<?php if ( daak_profile( 'name' ) ) : ?><span class="brand-words"><b><?php echo esc_html( daak_profile( 'name' ) ); ?></b></span><?php endif; ?>
 				</a>
 				<p class="foot-line"><?php echo esc_html( daak_policy( 'gravel_headline' ) ); ?></p>

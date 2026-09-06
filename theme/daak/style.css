@@ -443,7 +443,7 @@ table.roads th[scope="row"], table.rates th[scope="row"] { font-weight: 600; }
    ========================================================================== */
 .site-footer { background: var(--night); color: #C7D4EE; margin-top: 0; padding: 40px 0 26px; }
 .site-footer .brand-words b { color: #fff; }
-.site-footer .brand-badge.on-dark { background: #fff; padding: 2px; }
+.site-footer .brand-badge.on-dark { width: 56px; height: 56px; }   /* the reverse badge carries its own white field */
 .foot-grid { display: grid; gap: 28px; }
 .foot-grid h4 { color: #fff; margin-bottom: 12px; }
 .foot-grid ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 9px; }

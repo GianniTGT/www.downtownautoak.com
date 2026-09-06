@@ -6,5 +6,3 @@ tools/preview/shots/
 tools/preview/fonts/
 node_modules/
 .DS_Store
-# Scratch pages the brand proofs were shot from.
-brand/out/*.html

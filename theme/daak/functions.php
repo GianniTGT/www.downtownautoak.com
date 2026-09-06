@@ -98,7 +98,7 @@ add_action( 'wp_head', function () {
 	$svg = DAAK_URI . '/assets/img/daak-monogram.svg';
 	printf( '<link rel="icon" href="%s" sizes="any">' . "\n", esc_url( $ico ) );
 	printf( '<link rel="icon" href="%s" type="image/svg+xml">' . "\n", esc_url( $svg ) );
-	printf( '<link rel="apple-touch-icon" href="%s">' . "\n", esc_url( DAAK_URI . '/assets/img/daak-mark-512.png' ) );
+	printf( '<link rel="apple-touch-icon" href="%s">' . "\n", esc_url( DAAK_URI . '/assets/img/daak-badge-512.png' ) );
 }, 2 );
 
 /** Body classes the stylesheet leans on. */
