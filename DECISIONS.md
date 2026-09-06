@@ -175,7 +175,18 @@ One thing to expect rather than be surprised by: the admin menu suffix is derive
 from the business name, so it reads **DAA** and not DAAK — it takes first letters
 of words. That is a menu label. The badge is drawn art and is unaffected.
 
-## 11. What was not built
+## 11. The vendor's URL, corrected
+
+The brief gives the footer credit as *Site by TIFF Software Solutions* →
+`https://hoponeurope.com`. That is wrong, and the vendor said so: the site is
+**`https://tiff-software-solutions.com/`**, which is also where the dealership's
+own theme has always pointed its credit.
+
+Changed in the theme header and in `daak_vendor_credit()`, and filterable with
+`daak_vendor_url`. The brief is quoted unchanged in the README, so the record of
+what it said and why it was overruled lives here rather than by editing it.
+
+## 12. What was not built
 
 Online payment, a loyalty scheme, multi-location, an app, dynamic pricing, and
 any integration with the dealership's desktop application. The same car may one

@@ -227,11 +227,18 @@ function daak_booking_form( $vehicle_id = 0, $args = array() ) {
 	<?php
 }
 
-/** The vendor credit. The dealer's mark is uploaded; this one ships with the theme. */
+/**
+ * The vendor credit. The dealer's mark is uploaded; this one ships with the
+ * theme, because the vendor is the same whoever installs it.
+ *
+ * The build brief wrote the vendor URL as hoponeurope.com. It is not: the
+ * vendor's own site is tiff-software-solutions.com, which is also what the
+ * dealership's theme links to. Corrected on the vendor's word, September 2026.
+ */
 function daak_vendor_credit() {
 	printf(
 		'<a class="tiff-credit" href="%s" rel="noopener"><img src="%s" alt="" width="14" height="15" loading="lazy"><span>Site by <b>TIFF</b> Software Solutions</span></a>',
-		esc_url( apply_filters( 'daak_vendor_url', 'https://hoponeurope.com' ) ),
+		esc_url( apply_filters( 'daak_vendor_url', 'https://tiff-software-solutions.com/' ) ),
 		esc_url( DAAK_URI . '/assets/img/tiff-mark-footer.svg' )
 	);
 }
