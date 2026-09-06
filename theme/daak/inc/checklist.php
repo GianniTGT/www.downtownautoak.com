@@ -97,11 +97,18 @@ function daak_checklist_items() {
 		if ( ! get_post_meta( $v->ID, 'dv_vin', true ) ) { $no_vin[] = $v->ID; }
 		if ( ! get_post_meta( $v->ID, 'dv_recall_checked', true ) ) { $no_recall[] = $v->ID; }
 	}
+	// With an empty fleet these four are unmet, and saying "All priced" underneath
+	// a red dot is the screen contradicting itself on the very first day.
+	$fleet_detail = function ( $missing, $all_good, $each ) use ( $vehicles ) {
+		if ( ! $vehicles ) { return 'No vehicles yet — nothing to check.'; }
+		return $missing ? count( $missing ) . ' ' . $each : $all_good;
+	};
+
 	$add( 'There are vehicles in the fleet', count( $vehicles ) > 0, count( $vehicles ) . ' live. Three is a business; one is a favour.', admin_url( 'edit.php?post_type=daak_vehicle' ) );
-	$add( 'Every vehicle has a daily rate', $vehicles && ! $no_rate, $no_rate ? count( $no_rate ) . ' without one' : 'All priced' );
-	$add( 'Every vehicle has a photograph', $vehicles && ! $no_photo, $no_photo ? count( $no_photo ) . ' without one' : 'All photographed' );
-	$add( 'Every vehicle has its VIN on file', $vehicles && ! $no_vin, $no_vin ? count( $no_vin ) . ' without one — the VIN is what makes a recall check checkable' : 'All on file' );
-	$add( 'Every vehicle has been checked against NHTSA recalls', $vehicles && ! $no_recall, $no_recall ? count( $no_recall ) . ' unchecked' : 'All checked' );
+	$add( 'Every vehicle has a daily rate', $vehicles && ! $no_rate, $fleet_detail( $no_rate, 'All priced', 'without one' ) );
+	$add( 'Every vehicle has a photograph', $vehicles && ! $no_photo, $fleet_detail( $no_photo, 'All photographed', 'without one' ) );
+	$add( 'Every vehicle has its VIN on file', $vehicles && ! $no_vin, $fleet_detail( $no_vin, 'All on file', 'without one — the VIN is what makes a recall check checkable' ) );
+	$add( 'Every vehicle has been checked against NHTSA recalls', $vehicles && ! $no_recall, $fleet_detail( $no_recall, 'All checked', 'unchecked' ) );
 
 	$pages   = daak_pages();
 	$missing_pages = array();
