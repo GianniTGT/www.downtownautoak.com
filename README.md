@@ -1,5 +1,60 @@
 # www.downtownautoak.com
-Build brief — Downtown Auto AK, a car rental site on downtownautoak.com
+
+**Downtown Auto AK** — the rental half of an Anchorage used-car dealership.
+Gravel-road approved, unlimited miles, winter-equipped.
+
+This repository holds the site itself, the brand marks, and the tooling used to
+build and check both. The original build brief is kept below, unchanged.
+
+## What is here
+
+| | |
+|---|---|
+| `theme/daak/` | The WordPress theme: fleet, per-vehicle availability, request-based booking that cannot double-book, the Alaska pages, the business profile record and the go-live checklist. No plugin dependencies. |
+| `brand/` | The DAAK marks, drawn as geometry — badge, stacked mark, AK monogram, header lockup — plus the generator and the rasteriser that produce the PNGs and a 6-size favicon. |
+| `deploy/daak-seed.json` | The dealer's details, deliberately outside the theme. Imported on first run; never overwrites anything typed on the site. |
+| `docs/` | [Installing](docs/INSTALL.md) · [What only the owner can decide](docs/OWNER-QUESTIONS.md) · screenshots |
+| `tools/preview/` | Renders every template to static HTML outside WordPress, screenshots it, and audits it in a real browser. |
+| `tools/tests/` | 52 behaviour checks, and the grep that proves the theme knows no dealer. |
+| [`DECISIONS.md`](DECISIONS.md) | Every decision the build made, and what it was measured against. |
+
+## What it does
+
+- **The fleet** with filters built from the vehicles actually in it — a filter
+  that cannot narrow anything is not drawn.
+- **Availability per vehicle.** Search only offers what is free, the booking
+  handler checks again at submission, confirming a request holds the dates, and
+  there is a month-grid in the admin. A block covers both its dates.
+- **A request, not a payment.** Name, telephone, dates, vehicle, add-ons. Written
+  to the database *before* anything is sent, so a mail failure never loses a
+  customer. The data model has room for a Stripe deposit later.
+- **A live quote** with weekly and monthly breaks, seasonal multipliers, add-ons
+  priced per day or per rental, and the tax sentence on every page that shows a price.
+- **Alaska content that no template ships with:** the road-by-road gravel table
+  (one record, printed everywhere it is asked), winter equipment, block heaters,
+  moose, ferries, Canada, and a daylight table calculated from the latitude.
+- **Rent-to-own** with arithmetic you can type your own numbers into.
+- **A profile record** so the theme carries no dealer's name, address, telephone
+  or email — checked by `tools/tests/no-dealer-literals.sh`.
+- **A privacy boundary that is enforced, not promised:** no Social Security
+  number, date of birth, licence number or card details, and the software refuses
+  to store such a field if anything ever adds one.
+- **A go-live checklist** in wp-admin that computes the brief's closing list
+  against what is actually in the database.
+
+## Checking it
+
+```bash
+php tools/tests/run.php               # 52 behaviour checks — availability, quotes, privacy, daylight
+tools/tests/no-dealer-literals.sh     # the theme must know no dealer
+php tools/preview/render.php          # render all 13 templates to static HTML
+node tools/preview/audit.js 390       # no sideways scroll, no JS errors, 44px tap targets
+```
+
+![The home page](docs/screenshots/home-desktop.png)
+
+---
+
 # Build brief — Downtown Auto AK, a car rental site on downtownautoak.com
 
 You are building a **car rental website** for an existing used-car dealership in

@@ -1,0 +1,10 @@
+# The preview harness's output: regenerate it with
+#   php tools/preview/render.php && tools/preview/shoot.sh
+tools/preview/out/
+tools/preview/shots/
+# Barlow, fetched for offline screenshots. Not ours to redistribute.
+tools/preview/fonts/
+node_modules/
+.DS_Store
+# Scratch pages the brand proofs were shot from.
+brand/out/*.html
