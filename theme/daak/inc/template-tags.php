@@ -301,14 +301,21 @@ function daak_daylight_hours( $month, $lat = null ) {
 }
 
 /**
- * A date as a person reads it.
+ * A date as a person reads it — an American person, since the customers are
+ * standing in Anchorage.
  *
  * Everything is stored and compared as Y-m-d because that sorts as a string,
- * but "2026-09-10" on a page about a holiday is a database talking.
+ * but "2026-09-10" on a page about a holiday is a database talking. Month
+ * before day, which is the order the reader here expects: "Sat, Sep 12".
+ *
+ * Note this governs only what the theme prints. The date *pickers* render in
+ * whatever locale the visitor's browser runs in — a German browser shows
+ * TT.MM.JJJJ, an American one MM/DD/YYYY — and no site can override that.
+ * The value posted is always ISO, so nothing downstream is ambiguous.
  */
 function daak_pretty_date( $date, $with_year = false ) {
 	$ts = strtotime( (string) $date );
 	if ( ! $ts ) { return ''; }
 	$same_year = gmdate( 'Y', $ts ) === wp_date( 'Y' );
-	return wp_date( $with_year || ! $same_year ? 'D j M Y' : 'D j M', $ts );
+	return wp_date( $with_year || ! $same_year ? 'D, M j, Y' : 'D, M j', $ts );
 }
