@@ -30,6 +30,8 @@ foreach ( array( 'profile', 'post-types', 'availability', 'booking', 'template-t
 /* ------------------------------------------------------------- fixtures */
 
 $seed = json_decode( (string) file_get_contents( $root . '/deploy/daak-seed.json' ), true );
+$seed['profile']['hero_image_id'] = 9001;
+$GLOBALS['daak_attachments'][9001] = 'file://' . __DIR__ . '/out/img/hero.jpg';
 daak_fixture_option( 'daak_profile', $seed['profile'] );
 
 // The owner's answers, as they would look on a site that has been through the

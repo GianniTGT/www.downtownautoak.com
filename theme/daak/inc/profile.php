@@ -46,6 +46,7 @@ function daak_profile_fields() {
 		'rating'      => 'Google rating',
 		'rating_count'=> 'Google review count',
 		'logo_id'     => 'Logo attachment ID',
+		'hero_image_id' => 'Hero photograph attachment ID',
 	);
 }
 
