@@ -161,7 +161,10 @@ img { height: auto; display: block; }
 }
 .nav { display: flex; align-items: center; gap: 12px; min-height: 68px; }
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; margin-right: auto; }
-.brand-badge { width: 48px; height: 48px; border-radius: 11px; }
+/* No border-radius here. The badge draws its own corners, and a CSS radius on
+   top of them cuts a wider curve than the artwork has — which slices straight
+   through the white inner frame and leaves the line broken at every corner. */
+.brand-badge { width: 48px; height: 48px; }
 .brand-words { display: flex; flex-direction: column; line-height: 1.05; }
 .brand-words b { font-family: var(--display); font-size: 21px; font-weight: 800; color: var(--brand); letter-spacing: .01em; }
 .brand-words em { font-style: normal; font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--steel); }
