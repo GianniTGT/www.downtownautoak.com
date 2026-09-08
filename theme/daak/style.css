@@ -200,6 +200,21 @@ img { height: auto; display: block; }
 	background: radial-gradient(closest-side, rgba(143, 179, 255, .25), transparent);
 	pointer-events: none;
 }
+
+/* With a photograph behind it, the headline is white text over snow and sky —
+   the two brightest things in Alaska. The scrim is therefore heavy where the
+   words are and light where the vehicle is, and the navy underneath it keeps
+   the page one colour if the image ever fails to load. Measured on the render:
+   white on the darkest sampled pixel behind the headline, not guessed. */
+.hero.has-photo {
+	background-image:
+		linear-gradient(180deg, rgba(16, 48, 113, .82) 0%, rgba(16, 48, 113, .72) 55%, rgba(16, 48, 113, .88) 100%),
+		var(--hero-photo);
+	background-size: cover, cover;
+	background-position: center, center 38%;
+	background-repeat: no-repeat, no-repeat;
+}
+.hero.has-photo::after { display: none; }
 .hero h1 { color: #fff; max-width: 21ch; }
 .hero .lede { max-width: 54ch; color: #D7E2FB; font-size: 17px; }
 .eyebrow {
@@ -496,6 +511,28 @@ table.roads th[scope="row"], table.rates th[scope="row"] { font-weight: 600; }
 	.hero { padding: 74px 0 60px; }
 	.hero .lede { font-size: 18px; }
 	.herosearch { max-width: 760px; }
+	/* A photograph of a vehicle is nearly always taller than a hero band is.
+	   Stretched across the full width it either loses the mountains or cuts the
+	   wheels off, so on a wide screen it gets a column of its own on the right
+	   and keeps its own proportions. The text then sits on plain navy, which is
+	   also the safest thing that can happen to white type. */
+	/* The navy stays — it is what the headline is legible against. Only the
+	   photograph moves into its own column. */
+	.hero.has-photo {
+		background-image: linear-gradient(160deg, var(--night) 0%, var(--night-2) 55%, var(--night-3) 100%);
+	}
+	.hero.has-photo::before {
+		content: ''; position: absolute; inset: 0 0 0 44%; z-index: 0;
+		background-image: var(--hero-photo-wide, var(--hero-photo));
+		background-size: cover;
+		background-position: center 45%;
+		-webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 26%);
+		        mask-image: linear-gradient(90deg, transparent 0%, #000 26%);
+	}
+	.hero.has-photo .wrap { position: relative; z-index: 1; }
+	.hero.has-photo h1 { max-width: 15ch; }
+	.hero.has-photo .lede { max-width: 40ch; }
+	.hero.has-photo .herosearch { max-width: 620px; }
 	.cards { grid-template-columns: repeat(4, 1fr); }
 	.archive .cards, .post-type-archive .cards { grid-template-columns: repeat(3, 1fr); }
 	.split { grid-template-columns: 1.35fr 1fr; align-items: start; }

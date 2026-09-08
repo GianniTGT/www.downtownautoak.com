@@ -142,6 +142,7 @@ function daak_settings_tab_profile() {
 	foreach ( daak_profile_fields() as $key => $label ) {
 		$desc = '';
 		if ( 'logo_id' === $key )      { $desc = 'Attachment ID of the badge in the media library. Upload it once; never commit it into the theme.'; }
+		if ( 'hero_image_id' === $key ) { $desc = 'Attachment ID of the home-page photograph. Landscape, and busy on one side only — the headline sits over the left of it. Leave empty for the plain navy hero.'; }
 		if ( 'rating' === $key )       { $desc = 'If reviews are shown they are quoted verbatim or linked. Never paraphrased.'; }
 		if ( 'founded' === $key )      { $desc = 'The founding year, not the year of an administrative dissolution.'; }
 		daak_field( $label, 'p_' . $key, $p[ $key ] ?? '', $desc );
@@ -236,7 +237,7 @@ function daak_save_settings( $tab ) {
 					$p[ $k ] = sanitize_email( $raw );
 				} elseif ( in_array( $k, array( 'sales_site', 'map_url', 'reviews_url' ), true ) ) {
 					$p[ $k ] = esc_url_raw( $raw );
-				} elseif ( 'logo_id' === $k ) {
+				} elseif ( 'logo_id' === $k || 'hero_image_id' === $k ) {
 					$p[ $k ] = (string) absint( $raw );
 				} else {
 					$p[ $k ] = sanitize_text_field( $raw );

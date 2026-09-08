@@ -12,9 +12,10 @@ get_header();
 $from = isset( $_GET['from'] ) ? daak_date( sanitize_text_field( wp_unslash( $_GET['from'] ) ) ) : '';
 $to   = isset( $_GET['to'] ) ? daak_date( sanitize_text_field( wp_unslash( $_GET['to'] ) ) ) : '';
 $fleet = daak_search_vehicles( array( 'from' => $from, 'to' => $to ) );
+$hero  = daak_hero_style();
 ?>
 
-<section class="hero">
+<section class="hero<?php echo $hero ? ' has-photo' : ''; ?>"<?php echo $hero; ?>>
 	<div class="wrap">
 		<p class="eyebrow"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-road"/></svg> Anchorage, Alaska</p>
 		<h1><?php echo esc_html( daak_policy( 'gravel_headline' ) ); ?></h1>

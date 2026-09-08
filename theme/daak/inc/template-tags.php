@@ -43,6 +43,37 @@ function daak_logo( $class = 'brand-badge', $variant = 'default' ) {
 	);
 }
 
+/**
+ * The home-page photograph, if one is uploaded.
+ *
+ * Returned as a style attribute rather than a stylesheet rule because the URL
+ * belongs to one site's media library, and the theme must stay free of it.
+ * The scrim that keeps the headline readable lives in the stylesheet, where it
+ * can be measured; this only supplies the picture.
+ */
+function daak_hero_style() {
+	$id = (int) daak_profile( 'hero_image_id' );
+	if ( ! $id ) { return ''; }
+
+	// Deliberately NOT the daak_hero size. That one is a hard 16:9 crop, and a
+	// photograph of a vehicle is usually taller than it is wide — cropping it to
+	// a band throws away either the mountains or the wheels. The stylesheet does
+	// its own cropping, so it wants the picture whole.
+	//
+	// Two sizes, because most of this traffic is a phone on hotel wifi: the
+	// smaller file for the full-bleed mobile hero, the full one for the desktop
+	// column where it is displayed larger.
+	$small = wp_get_attachment_image_url( $id, 'large' ) ?: wp_get_attachment_image_url( $id, 'full' );
+	$wide  = wp_get_attachment_image_url( $id, 'full' ) ?: $small;
+	if ( ! $small ) { return ''; }
+
+	return sprintf(
+		' style="--hero-photo:url(%s);--hero-photo-wide:url(%s)"',
+		esc_url( $small ),
+		esc_url( $wide )
+	);
+}
+
 function daak_page_url( $slug ) {
 	$page = get_page_by_path( $slug );
 	return $page ? get_permalink( $page ) : home_url( '/' . $slug . '/' );
@@ -301,14 +332,21 @@ function daak_daylight_hours( $month, $lat = null ) {
 }
 
 /**
- * A date as a person reads it.
+ * A date as a person reads it — an American person, since the customers are
+ * standing in Anchorage.
  *
  * Everything is stored and compared as Y-m-d because that sorts as a string,
- * but "2026-09-10" on a page about a holiday is a database talking.
+ * but "2026-09-10" on a page about a holiday is a database talking. Month
+ * before day, which is the order the reader here expects: "Sat, Sep 12".
+ *
+ * Note this governs only what the theme prints. The date *pickers* render in
+ * whatever locale the visitor's browser runs in — a German browser shows
+ * TT.MM.JJJJ, an American one MM/DD/YYYY — and no site can override that.
+ * The value posted is always ISO, so nothing downstream is ambiguous.
  */
 function daak_pretty_date( $date, $with_year = false ) {
 	$ts = strtotime( (string) $date );
 	if ( ! $ts ) { return ''; }
 	$same_year = gmdate( 'Y', $ts ) === wp_date( 'Y' );
-	return wp_date( $with_year || ! $same_year ? 'D j M Y' : 'D j M', $ts );
+	return wp_date( $with_year || ! $same_year ? 'D, M j, Y' : 'D, M j', $ts );
 }

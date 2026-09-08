@@ -193,7 +193,11 @@ function get_the_post_thumbnail( $id = null, $size = '', $attr = array() ) {
 }
 function the_post_thumbnail( $size = '', $attr = array() ) { echo get_the_post_thumbnail( null, $size, $attr ); }
 function wp_get_attachment_image( $id, $size = '', $icon = false, $attr = array() ) { return ''; }
-function wp_get_attachment_image_url( $id, $size = '' ) { return ''; }
+function wp_get_attachment_image_url( $id, $size = '' ) {
+	// The harness maps attachment IDs onto local files so a hero photograph can
+	// be rendered and measured before it is anywhere near a server.
+	return $GLOBALS['daak_attachments'][ (int) $id ] ?? '';
+}
 function get_search_query() { return ''; }
 
 function is_singular( $type = '' ) { return $type ? $GLOBALS['daak_ctx']['singular'] === $type : (bool) $GLOBALS['daak_ctx']['singular']; }
